@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 # Load trained model
-model = joblib.load("venv/pkl/calorie_model.pkl")
+model = joblib.load("model/calorie_model.pkl")
 
 # Flask app
 app = Flask(__name__)
