@@ -20,105 +20,18 @@ This system leverages machine learning to estimate calorie burn based on physiol
 ### Prerequisites
 
 - Python 3.9+
-- pip package manager
+- Your training-time libs installed (e.g., scikit-learn, xgboost, etc.)
 
-### Installation
+Setup
+1) Ensure `calorie_model.pkl` is in this folder.
+2) Optional: activate your venv: `venv\Scripts\Activate.ps1`
+3) Install: `python -m pip install -r requirements.txt` and also install training libs if needed (e.g., `pip install scikit-learn`).
 
-1. **Clone and Setup**
-   ```bash
-   git clone <repository-url>
-   cd icbt
-   ```
+Run
+- `python app.py`
+- Open `http://localhost:5000`
 
-2. **Virtual Environment (Optional)**
-   ```bash
-   python -m venv venv
-   venv\Scripts\activate  # Windows
-   ```
-
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## 🎯 Usage
-
-### Running the Application
-
-1. **Start the Server**
-   ```bash
-   python app.py
-   ```
-
-2. **Access the Application**
-   - Web Interface: `http://localhost:5000`
-   - API Endpoint: `http://localhost:5000/predict`
-
-### API Documentation
-
-**Prediction Endpoint**
-- **URL**: `/predict`
-- **Method**: POST
-- **Request Format**:
-  ```json
-  {
-      "features": [num1, num2, ...]
-  }
-  ```
-  OR
-  ```json
-  {
-      "features": {
-          "feature_name1": value1,
-          "feature_name2": value2
-      }
-  }
-  ```
-- **Response Format**:
-  ```json
-  {
-      "prediction": number
-  }
-  ```
-
-## 📊 Model Features
-
-| Feature | Description | Type |
-|---------|-------------|------|
-| Age | Years | Numeric |
-| Weight | Kilograms | Numeric |
-| Height | Centimeters | Numeric |
-| Duration | Exercise minutes | Numeric |
-| Heart Rate | BPM | Numeric |
-| Temperature | Body temp (°C) | Numeric |
-| Sex | Male/Female | Categorical |
-
-## 📁 Project Structure
-
-```
-icbt/
-├── README.md
-├── requirements.txt
-├── app.py                # Flask application
-├── model/
-│   └── calorie_model.pkl # Trained ML model
-└── templates/
-    └── index.html       # Web interface
-```
-
-## 🛠️ Technology Stack
-
-- **Backend**: Flask
-- **ML Framework**: scikit-learn
-- **Data Processing**: pandas, numpy
-- **Frontend**: HTML/CSS/JavaScript
-
-## 📈 Performance
-
-The model achieves high accuracy in calorie prediction through:
-- Cross-validation testing
-- Feature importance analysis
-- Regular model updates
-
-
-**Built with ❤️ for health and fitness enthusiasts**
+API
+- POST `/predict`
+  - JSON: `{ "features": [num, ...] }` or `{ "features": { "name": value, ... } }`
+  - Response: `{ "prediction": number }` or `{ "error": message }` 
